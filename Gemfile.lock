@@ -159,6 +159,10 @@ GEM
     rspec-mocks (3.13.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
+    rspec-openapi (0.18.3)
+      actionpack (>= 5.2.0)
+      rails-dom-testing
+      rspec-core
     rspec-rails (6.1.2)
       actionpack (>= 6.1)
       activesupport (>= 6.1)
@@ -187,6 +191,7 @@ DEPENDENCIES
   debug
   puma (~> 5.0)
   rails (~> 7.0.8, >= 7.0.8.3)
+  rspec-openapi
   rspec-rails (~> 6.1.0)
   sqlite3 (~> 1.4)
   tzinfo-data

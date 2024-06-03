@@ -37,3 +37,18 @@ module HealthAppointmentApi
     config.api_only = true
   end
 end
+
+# ************************************   OpenApi Doc Config  ***********************************
+require 'rspec/openapi'
+
+RSpec::OpenAPI.title = 'Health Appointment API'
+
+# Change `info.version`
+RSpec::OpenAPI.application_version = '1.0.0'
+
+# Set `servers` - generate servers of a schema file
+RSpec::OpenAPI.servers = [{ url: 'http://localhost:3000' }]
+
+# Generate a custom tags, given an RSpec example
+# This example uses the tags from the parent_example_group
+RSpec::OpenAPI.tags_builder = -> (example) { [example.metadata.dig(:example_group, :parent_example_group, :description)] }

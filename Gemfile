@@ -42,6 +42,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 6.1.0'
 end
 
+# OpenApi docs generator
+gem 'rspec-openapi', group: :test
+
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"

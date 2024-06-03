@@ -1,24 +1,40 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Documentation
+### OpenApi
+You can render [swagger specification here](https://editor.swagger.io/?raw=http://raw.githubusercontent.com/leobz/health_appointment_api/master/doc/openapi.yaml),
+which is taken from `doc/openapi.yaml` in master.
 
-Things you may want to cover:
+Run `OPENAPI=1 bundle exec rspec` if you want to regenerate the `doc/openapi.yaml` file.
 
-* Ruby version
 
-* System dependencies
 
-* Configuration
 
-* Database creation
+[//]: # (Things you may want to cover:)
 
-* Database initialization
+[//]: # ()
+[//]: # (* Ruby version)
 
-* How to run the test suite
+[//]: # ()
+[//]: # (* System dependencies)
 
-* Services (job queues, cache servers, search engines, etc.)
+[//]: # ()
+[//]: # (* Configuration)
 
-* Deployment instructions
+[//]: # ()
+[//]: # (* Database creation)
 
-* ...
+[//]: # ()
+[//]: # (* Database initialization)
+
+[//]: # ()
+[//]: # (* How to run the test suite)
+
+[//]: # ()
+[//]: # (* Services &#40;job queues, cache servers, search engines, etc.&#41;)
+
+[//]: # ()
+[//]: # (* Deployment instructions)
+
+[//]: # ()
+[//]: # (* ...)

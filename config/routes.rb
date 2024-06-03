@@ -6,7 +6,6 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-
       resources :doctors, only: [:show] do
         resources :working_hours, only: [:index], module: :doctors
       end

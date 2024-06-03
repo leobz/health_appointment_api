@@ -1,0 +1,47 @@
+---
+openapi: 3.0.3
+info:
+  title: Health Appointment API
+  version: 1.0.0
+servers:
+- url: http://localhost:3000
+paths:
+  "/api/v1/doctors/{doctor_id}/working_hours":
+    get:
+      summary: index
+      tags:
+      - Pichi
+      parameters:
+      - name: doctor_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+      responses:
+        '200':
+          description: returns a list of working hours
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    day:
+                      type: string
+                    end_time:
+                      type: string
+                    start_time:
+                      type: string
+                  required:
+                  - day
+                  - end_time
+                  - start_time
+              example:
+              - day: monday
+                end_time: '17:00'
+                start_time: '09:00'
+              - day: friday
+                end_time: '17:00'
+                start_time: '09:00'

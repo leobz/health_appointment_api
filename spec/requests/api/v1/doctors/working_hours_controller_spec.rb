@@ -11,7 +11,7 @@ RSpec.describe 'WorkingHours',  type: :request do
     )
   }
 
-  describe '#index' do
+  describe 'Index' do
     it 'returns a list of working hours' do
       get api_v1_doctor_working_hours_path(doctor_id: doctor.id)
 

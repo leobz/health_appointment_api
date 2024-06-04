@@ -23,7 +23,11 @@ RSpec.describe 'Appointment',  type: :request do
       }
 
       expect {
-        post api_v1_appointments_path(body)
+        post(
+          api_v1_appointments_path,
+          headers: { 'Content-Type': 'application/json' },
+          params: body.to_json
+        )
       }.to change(Appointment, :count).by(1)
 
       #***************************** DB Validation *********************************
@@ -37,7 +41,7 @@ RSpec.describe 'Appointment',  type: :request do
       expect(response.parsed_body).to match(
           {
             'id' => appointment.id,
-            'start_time' => "2024-01-01 15:00:00 UTC",
+            'start_time' => "2024-01-01T15:00:00Z",
             'doctor_id' => doctor.id,
             'patient_id' => patient.id}
       )

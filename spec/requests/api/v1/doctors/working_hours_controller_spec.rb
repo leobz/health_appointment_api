@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'WorkingHours',  type: :request do
+RSpec.describe 'WorkingHour',  type: :request do
   let!(:doctor)  {
     Doctor.create(
       first_name: 'John',

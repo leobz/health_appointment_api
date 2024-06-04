@@ -72,6 +72,19 @@ RSpec.describe 'Appointment',  type: :request do
       )
     end
   end
+
+  describe 'Delete' do
+    it 'deletes an appointment' do
+      appointment = Appointment.create valid_attributes
+      expect { delete api_v1_appointment_path(appointment) }.to change(Appointment, :count).by(-1)
+
+      #***************************** DB Validation *********************************
+      expect(Appointment.last).to eq(nil)
+
+      #**************************** Controller Validation **************************
+      expect(response).to have_http_status(:no_content)
+    end
+  end
 end
 
 # ***************+  Helper Methods  ******************#

@@ -1,6 +1,6 @@
 module Api::V1
   class AppointmentsController < ApplicationController
-    before_action :set_appointment, only: %i[ update ]
+    before_action :set_appointment, only: %i[ update destroy ]
 
     def create
       @appointment = Appointment.new(appointment_params)
@@ -18,6 +18,10 @@ module Api::V1
       else
         render json: @appointment.errors, status: :unprocessable_entity
       end
+    end
+
+    def destroy
+      @appointment.destroy
     end
 
     private

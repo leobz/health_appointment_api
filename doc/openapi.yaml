@@ -6,11 +6,62 @@ info:
 servers:
 - url: http://localhost:3000
 paths:
+  "/api/v1/appointments":
+    post:
+      summary: create
+      tags:
+      - Appointment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                patient_id:
+                  type: integer
+                doctor_id:
+                  type: integer
+                start_time:
+                  type: string
+              required:
+              - patient_id
+              - doctor_id
+              - start_time
+            example:
+              patient_id: 1
+              doctor_id: 1
+              start_time: '2024-01-01T15:00:00.000Z'
+      responses:
+        '201':
+          description: creates a new appointment
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  doctor_id:
+                    type: integer
+                  patient_id:
+                    type: integer
+                  start_time:
+                    type: string
+                required:
+                - id
+                - doctor_id
+                - patient_id
+                - start_time
+              example:
+                id: 1
+                doctor_id: 1
+                patient_id: 1
+                start_time: '2024-01-01T15:00:00Z'
   "/api/v1/doctors/{doctor_id}/working_hours":
     get:
       summary: index
       tags:
-      - WorkingHours
+      - WorkingHour
       parameters:
       - name: doctor_id
         in: path

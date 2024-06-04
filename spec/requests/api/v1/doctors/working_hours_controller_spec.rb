@@ -1,9 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe 'WorkingHours',  type: :request do
+RSpec.describe 'WorkingHour',  type: :request do
   let!(:doctor)  {
     Doctor.create(
-      full_name: 'John Doe',
+      first_name: 'John',
+      last_name: 'Doe',
       working_hours: [
         new_working_hour('monday', 9,17),
         new_working_hour('friday', 9,17)

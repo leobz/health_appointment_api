@@ -9,6 +9,8 @@ Rails.application.routes.draw do
       resources :doctors, only: [:show] do
         resources :working_hours, only: [:index], module: :doctors
       end
+
+      resources :appointments, only: [:create]
     end
   end
 end

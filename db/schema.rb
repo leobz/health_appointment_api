@@ -36,12 +36,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_03_202010) do
   end
 
   create_table "working_hours", force: :cascade do |t|
-    t.string "day"
-    t.time "start_time"
-    t.time "end_time"
+    t.integer "day_of_week", null: false
+    t.time "start_time", null: false
+    t.time "end_time", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "doctor_id"
+    t.index ["doctor_id", "day_of_week"], name: "index_working_hours_on_doctor_id_and_day_of_week"
     t.index ["doctor_id"], name: "index_working_hours_on_doctor_id"
   end
 

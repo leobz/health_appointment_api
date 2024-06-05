@@ -1,16 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'WorkingHour',  type: :request do
-  let!(:doctor)  {
-    Doctor.create(
-      first_name: 'John',
-      last_name: 'Doe',
-      working_hours: [
-        new_working_hour('monday', 9,17),
-        new_working_hour('friday', 9,17)
-      ]
-    )
-  }
+  let!(:doctor) { create(:doctor) }
+  let!(:working_hour1) { create(:working_hour, day: 'monday', doctor: doctor) }
+  let!(:working_hour2) { create(:working_hour, day: 'friday', doctor: doctor) }
 
   describe 'Index' do
     it 'returns a list of working hours' do
@@ -25,14 +18,4 @@ RSpec.describe 'WorkingHour',  type: :request do
       )
     end
   end
-end
-
-# ***************+  Helper Methods  ******************#
-
-def new_working_hour(day, start_hour, end_hour)
-  WorkingHour.new(
-    day: day,
-    start_time: Time.zone.local(2000, 1, 1, start_hour, 0, 0),
-    end_time: Time.zone.local(2000, 1, 1, end_hour, 0, 0)
-  )
 end

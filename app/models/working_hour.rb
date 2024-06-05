@@ -3,6 +3,7 @@
 
     #****************************** Validations *****************************
     validates :day_of_week, :start_time, :end_time, presence: true
+    validates :start_time, comparison: { less_than: :end_time, message: 'must be before end_time' }
     validate  :validate_no_overlapping_hours
 
     #***************************** Attributes ********************************

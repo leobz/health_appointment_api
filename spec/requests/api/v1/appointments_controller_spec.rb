@@ -35,6 +35,11 @@ RSpec.describe 'Appointment',  type: :request do
             'patient_id' => patient.id}
       )
     end
+
+    # it "fails with invalid params" do
+    #   #**************** start_time is not within doctor's working hours *******************
+    #   raise "TODO"
+    # end
   end
 
   describe 'Update' do

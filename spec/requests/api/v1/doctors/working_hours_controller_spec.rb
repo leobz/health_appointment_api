@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'WorkingHour',  type: :request do
   let!(:doctor) { create(:doctor) }
-  let!(:working_hour1) { create(:working_hour, day: 'monday', doctor: doctor) }
-  let!(:working_hour2) { create(:working_hour, day: 'friday', doctor: doctor) }
+  let!(:working_hour1) { create(:working_hour, day_of_week: :monday, doctor: doctor) }
+  let!(:working_hour2) { create(:working_hour, day_of_week: :friday, doctor: doctor) }
 
   describe 'Index' do
     it 'returns a list of working hours' do
@@ -12,8 +12,8 @@ RSpec.describe 'WorkingHour',  type: :request do
       expect(response).to have_http_status(200)
       expect(response.parsed_body).to match(
         [
-          {'day' => 'monday', 'start_time' => '09:00', 'end_time' => '17:00'},
-          {'day' => 'friday', 'start_time' => '09:00', 'end_time' => '17:00'}
+          {'day_of_week' => 'monday', 'start_time' => '09:00', 'end_time' => '17:00'},
+          {'day_of_week' => 'friday', 'start_time' => '09:00', 'end_time' => '17:00'}
         ]
       )
     end

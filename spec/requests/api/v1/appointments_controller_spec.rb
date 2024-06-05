@@ -28,17 +28,17 @@ RSpec.describe 'Appointment',  type: :request do
       #**************************** Controller Validation **************************
       expect(response).to have_http_status(:created)
       expect(response.parsed_body).to match(
-          {
-            'id' => appointment.id,
-            'start_time' => "2024-01-01T15:00:00Z",
-            'doctor_id' => doctor.id,
-            'patient_id' => patient.id}
+        {
+          'id' => appointment.id,
+          'start_time' => "2024-01-01T15:00:00Z",
+          'doctor_id' => doctor.id,
+          'patient_id' => patient.id
+        }
       )
     end
 
     # it "fails with invalid params" do
     #   #**************** start_time is not within doctor's working hours *******************
-    #   raise "TODO"
     # end
   end
 

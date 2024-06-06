@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :doctors, only: [:show] do
         resources :working_hours, only: [:index], module: :doctors
+        resources :availabilities, only: [:index], module: :doctors
       end
 
       resources :appointments, only: [:create, :update, :destroy]

@@ -30,7 +30,7 @@ paths:
             example:
               doctor_id: 1
               patient_id: 1
-              start_time: '2024-01-01T15:00:00.000Z'
+              start_time: '2024-01-01T15:00:00.000+00:00'
       responses:
         '201':
           description: creates a new appointment
@@ -100,9 +100,9 @@ paths:
               - patient_id
               - start_time
             example:
-              doctor_id: 2
-              patient_id: 2
-              start_time: '2024-01-02T12:00:00.000Z'
+              doctor_id: 1
+              patient_id: 1
+              start_time: '2024-01-08T16:00:00.000+00:00'
       responses:
         '200':
           description: updates an appointment
@@ -126,9 +126,69 @@ paths:
                 - start_time
               example:
                 id: 1
-                doctor_id: 2
-                patient_id: 2
-                start_time: '2024-01-02T12:00:00Z'
+                doctor_id: 1
+                patient_id: 1
+                start_time: '2024-01-08T16:00:00Z'
+  "/api/v1/doctors/{doctor_id}/availabilities":
+    get:
+      summary: index
+      tags:
+      - Availabilities
+      parameters:
+      - name: doctor_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '2024-06-10'
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '2024-06-03'
+      responses:
+        '200':
+          description: returns a list of availabilities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    date:
+                      type: string
+                    time_slots:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          start_time:
+                            type: string
+                        required:
+                        - start_time
+                  required:
+                  - date
+                  - time_slots
+              example:
+              - date: '2024-06-03'
+                time_slots:
+                - start_time: '2024-06-03T11:00:00-03:00'
+              - date: '2024-06-05'
+                time_slots:
+                - start_time: '2024-06-05T10:00:00-03:00'
+                - start_time: '2024-06-05T11:00:00-03:00'
+              - date: '2024-06-10'
+                time_slots:
+                - start_time: '2024-06-10T10:00:00-03:00'
+                - start_time: '2024-06-10T11:00:00-03:00'
   "/api/v1/doctors/{doctor_id}/working_hours":
     get:
       summary: index
@@ -157,14 +217,15 @@ paths:
                       type: string
                     start_time:
                       type: string
+                    day_of_week:
+                      type: string
                   required:
-                  - day
                   - end_time
                   - start_time
               example:
-              - day: monday
+              - day_of_week: monday
                 end_time: '17:00'
                 start_time: '09:00'
-              - day: friday
+              - day_of_week: friday
                 end_time: '17:00'
                 start_time: '09:00'

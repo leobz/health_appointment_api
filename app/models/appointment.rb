@@ -3,12 +3,11 @@ class Appointment < ApplicationRecord
   belongs_to :patient
 
   validates :start_time, presence: true
-  validate  :start_time_within_doctor_working_hours
-
+  validate  :validate_start_time_within_doctor_working_hours
 
   private
 
-  def start_time_within_doctor_working_hours
+  def validate_start_time_within_doctor_working_hours
     working_hour_exist = doctor.working_hours.any? {|working_hour| working_hour.valid_appointment?(self) }
 
     unless working_hour_exist

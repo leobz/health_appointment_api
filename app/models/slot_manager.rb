@@ -1,6 +1,5 @@
 class SlotManager
   Availability  = Struct.new(:date, :time_slots)
-  TimeSlot      = Struct.new(:start_time)
 
   def initialize(doctor, start_date, end_date)
     @doctor = doctor
@@ -11,41 +10,57 @@ class SlotManager
 
   def get_availabilities
     availabilities = []
-    working_hours_per_day =  @doctor.working_hours_per_day
-    appointments_per_date = @doctor.appointments_per_date(@start_date, @end_date)
 
     (@start_date..@end_date).each do |date|
-      # Create Availabilities
-      if working_hours_per_day.has_key?(date.strftime("%A").downcase)
-        availability = Availability.new(date, [])
-
-        # Create Timeslots
-        working_hours_per_day[date.strftime("%A").downcase].each do |working_hour|
-          time = working_hour.start_time
-
-          while time < working_hour.end_time
-            date_time = DateTime.new(date.year, date.month, date.day, time.hour, time.min)
-            date_appointments = appointments_per_date[date.to_s]
-            overlap_exists = date_appointments.any? do |appointment|
-              slot_start_time = TimeUtils.extract_time(Time.new(date.year, date.month, date.day, time.hour, time.min))
-              slot_end_time = TimeUtils.extract_time(Time.new(date.year, date.month, date.day, time.hour, time.min) +(60 * @slot_time_in_min))
-
-              ap_start_t = TimeUtils.extract_time(appointment.start_time)
-              ap_end_t = TimeUtils.extract_time(appointment.start_time.to_time + (60 * @slot_time_in_min) )
-
-              (slot_start_time...slot_end_time).overlaps?(ap_start_t...ap_end_t)
-            end
-
-            availability.time_slots << TimeSlot.new(date_time) unless overlap_exists
-
-            time = time + (60 * @slot_time_in_min)
-          end
-        end
-
-        availabilities << availability
-      end
+      availability = build_availability(date)
+      availabilities << availability if availability
     end
 
     availabilities
+  end
+
+  private
+
+  def build_availability(date)
+    return unless working_hours_available_for_date?(date)
+
+    Availability.new(date, build_time_slots(date))
+  end
+
+  def build_time_slots(date)
+    time_slots = []
+    date_appointments = get_appointments(date)
+
+    get_working_hours(date).each do |working_hour|
+      iteration_time = working_hour.start_time
+
+      while iteration_time < working_hour.end_time
+        time_slot = TimeSlot.new(TimeUtils.build_time(date, iteration_time), @slot_time_in_min)
+
+        unless time_slot.overlaps_with_appointment_list?(date_appointments)
+          time_slots << time_slot
+        end
+
+        iteration_time += (60 * @slot_time_in_min)
+      end
+    end
+
+    time_slots
+  end
+
+  def working_hours_available_for_date?(date)
+    not get_working_hours(date).empty?
+  end
+
+  def get_working_hours(date)
+    @working_hours_per_day ||= @doctor.working_hours_per_day
+
+    @working_hours_per_day[TimeUtils.day_name(date)]
+  end
+
+  def get_appointments(date)
+    @appointments_per_date ||= @doctor.appointments_per_date(@start_date, @end_date)
+
+    @appointments_per_date[date.to_s]
   end
 end

@@ -6,8 +6,8 @@ module Api::V1::Doctors
       end_date = params[:end_date] ? Date.parse(params[:end_date]) : start_date + 7.days
 
       availabilities = doctor.get_availabilities(start_date, end_date)
-      # TODO: Use AvailabilityBlueprint.render(availabilities)
-      render json: availabilities.to_json
+
+      render json: AvailabilityBlueprint.render(availabilities)
     end
   end
 end

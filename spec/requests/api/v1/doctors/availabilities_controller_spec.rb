@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Availabilities',  type: :request do
-  let!(:doctor)       { create(:doctor, time_slot_per_client_in_min: 60) }
+  let!(:doctor)         { create(:doctor, time_slot_per_client_in_min: 60) }
   let!(:working_hour_1) { create(:working_hour, day_of_week: 'monday', start_time: '10:00', end_time: '12:00', doctor: doctor) }
   let!(:working_hour_2) { create(:working_hour, day_of_week: 'wednesday', start_time: '10:00', end_time: '12:00', doctor: doctor) }
-
+  let!(:appointment)    { create(:appointment, start_time: DateTime.new(2024,06,03,10), doctor: doctor) }
 
   describe 'Index' do
     it 'returns a list of availabilities' do
@@ -12,10 +12,14 @@ RSpec.describe 'Availabilities',  type: :request do
       # Working Hours:
       #   Monday,     start_time = '10:00', end_time: = '12:00' -> (2 Slots: '10:00' and '11:00')
       #   Wednesday,  start_time = '10:00', end_time: = '12:00' -> (2 Slots: '10:00' and '11:00')
+      # Appointment:
+      #   Monday 3 Jun '10:00'
 
       # Date range: Monday 6 June to Monday 10 June
-      # Availabilities:
-      # Monday 3 June (2 slots), Wednesday 5 June (2 slots) and Monday 10 June (2 slots)
+      # Expected Availabilities:
+      #   Monday    3 June  (1 slot (1 reserved by appointment))
+      #   Wednesday 5 June  (2 slots)
+      #   Monday    10 June (2 slots)
       start_date = '2024-06-03' # 2024, June 3  -> Monday
       end_date   = '2024-06-10' # 2024, June 10 -> Monday (next week)
 
@@ -26,7 +30,6 @@ RSpec.describe 'Availabilities',  type: :request do
         {
           'date' => '2024-06-03',
           'time_slots' => [
-            { 'start_time' => '2024-06-03T10:00:00.000+00:00' },
             { 'start_time' => '2024-06-03T11:00:00.000+00:00' }
           ]
         },

@@ -5,8 +5,8 @@ class Doctor < ApplicationRecord
   validates :first_name, :last_name, presence: true
 
   def get_availabilities(start_date, end_date)
-    slot_manager = SlotManager.new(self, start_date, end_date)
-    slot_manager.get_availabilities
+    availability_service = AvailabilityService.new(self, start_date, end_date)
+    availability_service.get_availabilities
   end
 
   def working_hours_per_day

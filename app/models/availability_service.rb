@@ -1,4 +1,4 @@
-class SlotManager
+class AvailabilityService
   Availability  = Struct.new(:date, :time_slots)
 
   def initialize(doctor, start_date, end_date)

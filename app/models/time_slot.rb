@@ -12,6 +12,8 @@ class TimeSlot
     end
   end
 
+  private
+
   def overlaps_with_appointment?(appointment)
     slot_time_range   = TimeUtils.extract_time(start_time)...TimeUtils.extract_time(end_time)
     appointment_range = TimeUtils.extract_time(appointment.start_time)...TimeUtils.extract_time(appointment.start_time + (60 * @slot_duration_in_min) )

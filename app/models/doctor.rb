@@ -2,7 +2,7 @@ class Doctor < ApplicationRecord
   has_many :working_hours, dependent: :delete_all
   has_many :appointments
 
-  validates :first_name, :last_name, presence: true
+  validates :first_name, :last_name, :time_slot_per_client_in_min, presence: true
 
   def get_availabilities(start_date, end_date)
     availability_service = AvailabilityService.new(self, start_date, end_date)

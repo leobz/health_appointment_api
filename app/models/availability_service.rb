@@ -3,7 +3,7 @@ class AvailabilityService
   def initialize(doctor, start_date, end_date)
     @start_date = start_date
     @end_date = end_date
-    @time_slot_in_min = doctor.time_slot_per_client_in_min
+    @slot_duration_in_min = doctor.time_slot_per_client_in_min
     @doctor_working_hours_per_day = doctor.working_hours_per_day
     @doctor_appointments_per_date = doctor.appointments_per_date(@start_date, @end_date)
   end
@@ -24,7 +24,7 @@ class AvailabilityService
     appointments = get_appointments(date)
     working_hours = get_working_hours(date)
 
-    Availability.new(@time_slot_in_min, date, appointments, working_hours)
+    Availability.new(@slot_duration_in_min, date, appointments, working_hours)
   end
 
   def working_hours_available_for_date?(date)

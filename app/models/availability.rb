@@ -1,11 +1,11 @@
 class Availability
   attr_accessor :date
 
-  def initialize(slot_time_in_min, date, appointments, working_hours)
+  def initialize(slot_duration_in_min, date, appointments, working_hours)
     @date = date
     @appointments = appointments
     @working_hours = working_hours
-    @slot_time_in_min = slot_time_in_min
+    @slot_duration_in_min = slot_duration_in_min
   end
 
   def time_slots
@@ -20,13 +20,13 @@ class Availability
       iteration_time = working_hour.start_time
 
       while iteration_time < working_hour.end_time
-        time_slot = TimeSlot.new(TimeUtils.build_time(date, iteration_time), @slot_time_in_min)
+        time_slot = TimeSlot.new(TimeUtils.build_time(date, iteration_time), @slot_duration_in_min)
 
         unless time_slot.overlaps_with_appointment_list?(@appointments)
           time_slots << time_slot
         end
 
-        iteration_time += (60 * @slot_time_in_min)
+        iteration_time += (60 * @slot_duration_in_min)
       end
     end
 

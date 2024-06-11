@@ -9,9 +9,9 @@ class AvailabilityService
   end
 
   def get_availabilities
-    (@start_date..@end_date).map do |date|
-      build_availability(date)
-    end.compact
+    (@start_date..@end_date)
+      .filter { |date| working_hours_available_for_date?(date) }
+      .map    { |date| build_availability(date) }
   end
 
   private
@@ -19,8 +19,6 @@ class AvailabilityService
   # Build availability for an specific date using pre-load data-structures to avoid multiple DB queries per date.
   # The pre-loaded data structures, consisting of a range of dates, include appointments and working hours.
   def build_availability(date)
-    return unless working_hours_available_for_date?(date)
-
     appointments = get_appointments(date)
     working_hours = get_working_hours(date)
 
@@ -28,7 +26,7 @@ class AvailabilityService
   end
 
   def working_hours_available_for_date?(date)
-    !get_working_hours(date).empty?
+    get_working_hours(date).present?
   end
 
   def get_working_hours(date)

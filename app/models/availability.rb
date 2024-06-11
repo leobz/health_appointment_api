@@ -13,23 +13,24 @@ class Availability
   end
 
   private
+
   def build_time_slots
-    time_slots = []
+    @working_hours.flat_map { |working_hour|  build_time_slots_for_working_hour(working_hour)}
+  end
 
-    @working_hours.each do |working_hour|
-      iteration_time = working_hour.start_time
-
-      while iteration_time < working_hour.end_time
-        time_slot = TimeSlot.new(TimeUtils.build_time(date, iteration_time), @slot_duration_in_min)
-
-        unless time_slot.overlaps_with_appointment_list?(@appointments)
-          time_slots << time_slot
-        end
-
-        iteration_time += (60 * @slot_duration_in_min)
+  def build_time_slots_for_working_hour(working_hour)
+    working_hour
+      .to_times
+      .each_with_object([]) do |time, time_slots|
+        time_slot = build_time_slot(time)
+        time_slots << time_slot if !time_slot.overlaps_with_appointment_list?(@appointments)
       end
-    end
+  end
 
-    time_slots
+  def build_time_slot(time)
+    start_time = TimeUtils.build_time(@date, time)
+    end_time   = TimeUtils.build_time(@date, time + @slot_duration_in_min.minutes)
+
+    TimeSlot.new(start_time, end_time)
   end
 end

@@ -4,9 +4,9 @@ class Doctor < ApplicationRecord
 
   validates :first_name, :last_name, :time_slot_per_client_in_min, presence: true
 
+  # Output Example: [Availability<>, Availability<>, ...]
   def get_availabilities(start_date, end_date)
-    availability_service = AvailabilityService.new(self, start_date, end_date)
-    availability_service.get_availabilities
+    AvailabilitiesService.call(self, start_date, end_date)
   end
 
   # Output Example: {"monday": [WorkingHour<>, WorkingHour<>], ... }

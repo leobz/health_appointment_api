@@ -1,4 +1,8 @@
-class AvailabilityService
+# This class returns a list of Availabilities within a date range
+class AvailabilitiesService
+  def self.call(*args)
+    self.new(*args).call
+  end
 
   def initialize(doctor, start_date, end_date)
     @start_date = start_date
@@ -8,7 +12,7 @@ class AvailabilityService
     @doctor_appointments_per_date = doctor.appointments_per_date(@start_date, @end_date)
   end
 
-  def get_availabilities
+  def call
     (@start_date..@end_date)
       .filter { |date| working_hours_available_for_date?(date) }
       .map    { |date| build_availability(date) }

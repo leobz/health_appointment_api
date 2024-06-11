@@ -8,6 +8,7 @@
     enum :day_of_week, {sunday: 0, monday: 1, tuesday: 2, wednesday: 3, thursday: 4, friday: 5, saturday: 6}
 
     def valid_appointment?(appointment)
+      # TODO: Evaluate to move this method to Appointment class
       # TODO: Add holidays validation. See https://github.com/holidays/holidays
       valid_appointment_day_of_week?(appointment) && valid_appointment_time?(appointment)
     end

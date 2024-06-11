@@ -133,7 +133,7 @@ paths:
     get:
       summary: index
       tags:
-      - Availabilities
+      - Availability
       parameters:
       - name: doctor_id
         in: path

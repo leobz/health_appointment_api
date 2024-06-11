@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Availabilities',  type: :request do
+RSpec.describe 'Availability',  type: :request do
   let!(:doctor)         { create(:doctor, time_slot_per_client_in_min: 60) }
   let!(:working_hour_1) { create(:working_hour, day_of_week: 'monday', start_time: '10:00', end_time: '12:00', doctor: doctor) }
   let!(:working_hour_2) { create(:working_hour, day_of_week: 'wednesday', start_time: '10:00', end_time: '12:00', doctor: doctor) }

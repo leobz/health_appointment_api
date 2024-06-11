@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Appointment',  type: :request do
-  let!(:doctor)       { create(:doctor) }
+  let!(:doctor)       { create(:doctor, time_slot_per_client_in_min: 60) }
   let!(:patient)      { create(:patient) }
   let!(:working_hour) { create(:working_hour, day_of_week: 'monday', start_time: '10:00', end_time: '18:00', doctor: doctor) }
 
@@ -35,6 +35,7 @@ RSpec.describe 'Appointment',  type: :request do
       #***************************** DB Validation *********************************
       appointment = Appointment.last
       expect(appointment.start_time).to eq(valid_attributes[:start_time])
+      expect(appointment.end_time).to   eq(valid_attributes[:start_time] + doctor.time_slot_per_client_in_min.minutes)
       expect(appointment.doctor_id).to  eq(doctor.id)
       expect(appointment.patient_id).to eq(patient.id)
     end
@@ -73,8 +74,11 @@ RSpec.describe 'Appointment',  type: :request do
 
       #***************************** DB Validation *********************************
       appointment.reload
-      expect(appointment.start_time.day).to eq(8)
-      expect(appointment.start_time.hour).to eq(16)
+      expect(appointment.start_time.day).to   eq(8)
+      expect(appointment.end_time.day).to     eq(8)
+
+      expect(appointment.start_time.hour).to  eq(16)
+      expect(appointment.end_time.hour).to    eq(17)
     end
   end
 

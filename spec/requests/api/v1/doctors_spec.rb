@@ -15,50 +15,41 @@ RSpec.describe "Doctor", type: :request do
   end
 
   describe "Show" do
-    context 'when the record exists' do
-      it 'returns the doctor' do
+      it 'returns the doctor if record exists' do
         get api_v1_doctor_path(doctor_id)
 
         expect(response).to have_http_status(200)
         expect(json).not_to be_empty
         expect(json['id']).to eq(doctor_id)
       end
-    end
 
-    context 'when the record does not exist' do
-      let(:doctor_id) { 100 }
-
-      it 'returns status code 404' do
-        get api_v1_doctor_path(doctor_id)
+      it 'returns status code 404 if record does not exist' do
+        invalid_doctor_id = 100
+        get api_v1_doctor_path(invalid_doctor_id)
 
         expect(response).to have_http_status(404)
         expect(response.body).to match(/Couldn't find Doctor/)
       end
-    end
   end
 
   describe "Create" do
     let(:valid_attributes) { { first_name: 'John', last_name: 'Doe', time_slot_per_client_in_min: 15 } }
 
-    context 'when the request is valid' do
-      it 'creates a doctor' do
+      it 'Valid Request: creates a doctor' do
         post api_v1_doctors_path, params: valid_attributes
 
         expect(response).to have_http_status(201)
         expect(json['first_name']).to eq('John')
         expect(json['last_name']).to eq('Doe')
       end
-    end
 
-    context 'when the request is invalid' do
-      it 'returns status code 422' do
+      it 'Invalid Request: returns status code 422' do
         post api_v1_doctors_path, params: { first_name: 'John' }
 
         expect(response).to have_http_status(422)
         expect(json['last_name']).to include("can't be blank")
         expect(json['time_slot_per_client_in_min']).to include("can't be blank")
       end
-    end
   end
 
   describe "Update" do
@@ -72,7 +63,7 @@ RSpec.describe "Doctor", type: :request do
       end
   end
 
-  describe "DELETE /api/v1/doctors/:id" do
+  describe "DELETE" do
     it 'returns status code 204' do
       delete api_v1_doctor_path(doctor_id)
 

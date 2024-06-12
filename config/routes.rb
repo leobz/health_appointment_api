@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       end
 
       resources :appointments, only: [:create, :update, :destroy]
+      resources :patients
     end
   end
 end

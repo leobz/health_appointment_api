@@ -10,7 +10,7 @@ paths:
     post:
       summary: create
       tags:
-      - Appointment
+      - Appointments
       requestBody:
         content:
           application/json:
@@ -61,7 +61,7 @@ paths:
     delete:
       summary: destroy
       tags:
-      - Appointment
+      - Appointments
       parameters:
       - name: id
         in: path
@@ -75,7 +75,7 @@ paths:
     put:
       summary: update
       tags:
-      - Appointment
+      - Appointments
       parameters:
       - name: id
         in: path
@@ -133,7 +133,7 @@ paths:
     get:
       summary: index
       tags:
-      - Doctor
+      - Doctors
       responses:
         '200':
           description: returns a list of doctors
@@ -168,66 +168,66 @@ paths:
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:06:51.726Z'
-                updated_at: '2024-06-12T03:06:51.726Z'
+                created_at: '2024-06-12T03:11:23.783Z'
+                updated_at: '2024-06-12T03:11:23.783Z'
               - id: 2
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:06:51.726Z'
-                updated_at: '2024-06-12T03:06:51.726Z'
+                created_at: '2024-06-12T03:11:23.784Z'
+                updated_at: '2024-06-12T03:11:23.784Z'
               - id: 3
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:06:51.727Z'
-                updated_at: '2024-06-12T03:06:51.727Z'
+                created_at: '2024-06-12T03:11:23.785Z'
+                updated_at: '2024-06-12T03:11:23.785Z'
               - id: 4
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:06:51.727Z'
-                updated_at: '2024-06-12T03:06:51.727Z'
+                created_at: '2024-06-12T03:11:23.786Z'
+                updated_at: '2024-06-12T03:11:23.786Z'
               - id: 5
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:06:51.728Z'
-                updated_at: '2024-06-12T03:06:51.728Z'
+                created_at: '2024-06-12T03:11:23.786Z'
+                updated_at: '2024-06-12T03:11:23.786Z'
               - id: 6
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:06:51.728Z'
-                updated_at: '2024-06-12T03:06:51.728Z'
+                created_at: '2024-06-12T03:11:23.787Z'
+                updated_at: '2024-06-12T03:11:23.787Z'
               - id: 7
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:06:51.729Z'
-                updated_at: '2024-06-12T03:06:51.729Z'
+                created_at: '2024-06-12T03:11:23.787Z'
+                updated_at: '2024-06-12T03:11:23.787Z'
               - id: 8
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:06:51.729Z'
-                updated_at: '2024-06-12T03:06:51.729Z'
+                created_at: '2024-06-12T03:11:23.788Z'
+                updated_at: '2024-06-12T03:11:23.788Z'
               - id: 9
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:06:51.729Z'
-                updated_at: '2024-06-12T03:06:51.729Z'
+                created_at: '2024-06-12T03:11:23.788Z'
+                updated_at: '2024-06-12T03:11:23.788Z'
               - id: 10
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:06:51.730Z'
-                updated_at: '2024-06-12T03:06:51.730Z'
+                created_at: '2024-06-12T03:11:23.789Z'
+                updated_at: '2024-06-12T03:11:23.789Z'
     post:
       summary: create
       tags:
-      - Doctor
+      - Doctors
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -280,8 +280,8 @@ paths:
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 15
-                created_at: '2024-06-12T03:06:51.755Z'
-                updated_at: '2024-06-12T03:06:51.755Z'
+                created_at: '2024-06-12T03:11:23.814Z'
+                updated_at: '2024-06-12T03:11:23.814Z'
         '422':
           description: 'Invalid Request: returns status code 422'
           content:
@@ -309,7 +309,7 @@ paths:
     get:
       summary: index
       tags:
-      - Availability
+      - Availabilities
       parameters:
       - name: doctor_id
         in: path
@@ -369,7 +369,7 @@ paths:
     get:
       summary: index
       tags:
-      - WorkingHour
+      - WorkingHours
       parameters:
       - name: doctor_id
         in: path
@@ -409,7 +409,7 @@ paths:
     delete:
       summary: destroy
       tags:
-      - Doctor
+      - Doctors
       parameters:
       - name: id
         in: path
@@ -423,7 +423,7 @@ paths:
     get:
       summary: show
       tags:
-      - Doctor
+      - Doctors
       parameters:
       - name: id
         in: path
@@ -463,8 +463,8 @@ paths:
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:06:51.734Z'
-                updated_at: '2024-06-12T03:06:51.734Z'
+                created_at: '2024-06-12T03:11:23.795Z'
+                updated_at: '2024-06-12T03:11:23.795Z'
         '404':
           description: returns status code 404 if record does not exist
           content:
@@ -481,7 +481,7 @@ paths:
     put:
       summary: update
       tags:
-      - Doctor
+      - Doctors
       parameters:
       - name: id
         in: path
@@ -533,5 +533,5 @@ paths:
                 id: 1
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:06:51.764Z'
-                updated_at: '2024-06-12T03:06:51.771Z'
+                created_at: '2024-06-12T03:11:23.826Z'
+                updated_at: '2024-06-12T03:11:23.833Z'

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Doctor", type: :request do
+RSpec.describe "Doctors", type: :request do
   let!(:doctors) { create_list(:doctor, 10) }
   let(:doctor_id) { doctors.first.id }
 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'WorkingHour',  type: :request do
+RSpec.describe 'WorkingHours',  type: :request do
   let!(:doctor)         { create(:doctor) }
   let!(:working_hour1)  { create(:working_hour, day_of_week: :monday, doctor: doctor) }
   let!(:working_hour2)  { create(:working_hour, day_of_week: :friday, doctor: doctor) }

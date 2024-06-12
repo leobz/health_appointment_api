@@ -168,62 +168,62 @@ paths:
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:26:25.703Z'
-                updated_at: '2024-06-12T03:26:25.703Z'
+                created_at: '2024-06-12T04:19:37.503Z'
+                updated_at: '2024-06-12T04:19:37.503Z'
               - id: 2
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:26:25.704Z'
-                updated_at: '2024-06-12T03:26:25.704Z'
+                created_at: '2024-06-12T04:19:37.503Z'
+                updated_at: '2024-06-12T04:19:37.503Z'
               - id: 3
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:26:25.705Z'
-                updated_at: '2024-06-12T03:26:25.705Z'
+                created_at: '2024-06-12T04:19:37.504Z'
+                updated_at: '2024-06-12T04:19:37.504Z'
               - id: 4
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:26:25.705Z'
-                updated_at: '2024-06-12T03:26:25.705Z'
+                created_at: '2024-06-12T04:19:37.505Z'
+                updated_at: '2024-06-12T04:19:37.505Z'
               - id: 5
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:26:25.706Z'
-                updated_at: '2024-06-12T03:26:25.706Z'
+                created_at: '2024-06-12T04:19:37.505Z'
+                updated_at: '2024-06-12T04:19:37.505Z'
               - id: 6
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:26:25.706Z'
-                updated_at: '2024-06-12T03:26:25.706Z'
+                created_at: '2024-06-12T04:19:37.506Z'
+                updated_at: '2024-06-12T04:19:37.506Z'
               - id: 7
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:26:25.706Z'
-                updated_at: '2024-06-12T03:26:25.706Z'
+                created_at: '2024-06-12T04:19:37.506Z'
+                updated_at: '2024-06-12T04:19:37.506Z'
               - id: 8
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:26:25.707Z'
-                updated_at: '2024-06-12T03:26:25.707Z'
+                created_at: '2024-06-12T04:19:37.507Z'
+                updated_at: '2024-06-12T04:19:37.507Z'
               - id: 9
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:26:25.707Z'
-                updated_at: '2024-06-12T03:26:25.707Z'
+                created_at: '2024-06-12T04:19:37.507Z'
+                updated_at: '2024-06-12T04:19:37.507Z'
               - id: 10
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:26:25.708Z'
-                updated_at: '2024-06-12T03:26:25.708Z'
+                created_at: '2024-06-12T04:19:37.508Z'
+                updated_at: '2024-06-12T04:19:37.508Z'
     post:
       summary: create
       tags:
@@ -280,8 +280,8 @@ paths:
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 15
-                created_at: '2024-06-12T03:26:25.741Z'
-                updated_at: '2024-06-12T03:26:25.741Z'
+                created_at: '2024-06-12T04:19:37.532Z'
+                updated_at: '2024-06-12T04:19:37.532Z'
         '422':
           description: 'Invalid Request: returns status code 422'
           content:
@@ -395,16 +395,280 @@ paths:
                       type: string
                     day_of_week:
                       type: string
+                    id:
+                      type: integer
                   required:
                   - end_time
                   - start_time
               example:
-              - day_of_week: monday
+              - id: 1
+                day_of_week: monday
                 end_time: '17:00'
                 start_time: '09:00'
-              - day_of_week: friday
+              - id: 2
+                day_of_week: friday
                 end_time: '17:00'
                 start_time: '09:00'
+    post:
+      summary: create
+      tags:
+      - WorkingHours
+      parameters:
+      - name: doctor_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                doctor_id:
+                  type: string
+                day_of_week:
+                  type: string
+                start_time:
+                  type: string
+                end_time:
+                  type: string
+              required:
+              - doctor_id
+              - day_of_week
+              - start_time
+              - end_time
+            example:
+              doctor_id: '1'
+              day_of_week: saturday
+              start_time: '09:00'
+              end_time: '10:00'
+      responses:
+        '201':
+          description: 'Valid Request: creates a working_hour'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  day_of_week:
+                    type: string
+                  start_time:
+                    type: string
+                  end_time:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                  doctor_id:
+                    type: integer
+                required:
+                - id
+                - day_of_week
+                - start_time
+                - end_time
+                - created_at
+                - updated_at
+                - doctor_id
+              example:
+                id: 3
+                day_of_week: saturday
+                start_time: '2000-01-01T09:00:00.000Z'
+                end_time: '2000-01-01T10:00:00.000Z'
+                created_at: '2024-06-12T04:19:37.484Z'
+                updated_at: '2024-06-12T04:19:37.484Z'
+                doctor_id: 1
+        '422':
+          description: 'Invalid Request: returns status code 422'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  day_of_week:
+                    type: array
+                    items:
+                      type: string
+                  start_time:
+                    type: array
+                    items:
+                      type: string
+                  end_time:
+                    type: array
+                    items:
+                      type: string
+                required:
+                - day_of_week
+                - start_time
+                - end_time
+              example:
+                day_of_week:
+                - can't be blank
+                start_time:
+                - can't be blank
+                - must be before end_time
+                end_time:
+                - can't be blank
+  "/api/v1/doctors/{doctor_id}/working_hours/{id}":
+    delete:
+      summary: destroy
+      tags:
+      - WorkingHours
+      parameters:
+      - name: doctor_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+      responses:
+        '204':
+          description: returns status code 204
+    get:
+      summary: show
+      tags:
+      - WorkingHours
+      parameters:
+      - name: doctor_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: returns the working_hour if record exists
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  day_of_week:
+                    type: string
+                  start_time:
+                    type: string
+                  end_time:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                  doctor_id:
+                    type: integer
+                required:
+                - id
+                - day_of_week
+                - start_time
+                - end_time
+                - created_at
+                - updated_at
+                - doctor_id
+              example:
+                id: 1
+                day_of_week: monday
+                start_time: '2000-01-01T09:00:00.000Z'
+                end_time: '2000-01-01T17:00:00.000Z'
+                created_at: '2024-06-12T04:19:37.469Z'
+                updated_at: '2024-06-12T04:19:37.469Z'
+                doctor_id: 1
+        '404':
+          description: returns status code 404 if record does not exist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+              example:
+                error: Couldn't find WorkingHour
+    put:
+      summary: update
+      tags:
+      - WorkingHours
+      parameters:
+      - name: doctor_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                start_time:
+                  type: string
+              required:
+              - start_time
+            example:
+              start_time: '05:00'
+      responses:
+        '200':
+          description: updates the record
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  start_time:
+                    type: string
+                  doctor_id:
+                    type: integer
+                  id:
+                    type: integer
+                  day_of_week:
+                    type: string
+                  end_time:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                required:
+                - start_time
+                - doctor_id
+                - id
+                - day_of_week
+                - end_time
+                - created_at
+                - updated_at
+              example:
+                start_time: '2000-01-01T05:00:00.000Z'
+                doctor_id: 1
+                id: 1
+                day_of_week: monday
+                end_time: '2000-01-01T17:00:00.000Z'
+                created_at: '2024-06-12T04:19:37.493Z'
+                updated_at: '2024-06-12T04:19:37.496Z'
   "/api/v1/doctors/{id}":
     delete:
       summary: destroy
@@ -463,8 +727,8 @@ paths:
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:26:25.712Z'
-                updated_at: '2024-06-12T03:26:25.712Z'
+                created_at: '2024-06-12T04:19:37.513Z'
+                updated_at: '2024-06-12T04:19:37.513Z'
         '404':
           description: returns status code 404 if record does not exist
           content:
@@ -533,8 +797,8 @@ paths:
                 id: 1
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:26:25.750Z'
-                updated_at: '2024-06-12T03:26:25.756Z'
+                created_at: '2024-06-12T04:19:37.550Z'
+                updated_at: '2024-06-12T04:19:37.556Z'
   "/api/v1/patients":
     get:
       summary: index
@@ -570,53 +834,53 @@ paths:
               - id: 1
                 first_name: John
                 last_name: Doe
-                created_at: '2024-06-12T03:26:25.767Z'
-                updated_at: '2024-06-12T03:26:25.767Z'
+                created_at: '2024-06-12T04:19:37.565Z'
+                updated_at: '2024-06-12T04:19:37.565Z'
               - id: 2
                 first_name: John
                 last_name: Doe
-                created_at: '2024-06-12T03:26:25.768Z'
-                updated_at: '2024-06-12T03:26:25.768Z'
+                created_at: '2024-06-12T04:19:37.566Z'
+                updated_at: '2024-06-12T04:19:37.566Z'
               - id: 3
                 first_name: John
                 last_name: Doe
-                created_at: '2024-06-12T03:26:25.769Z'
-                updated_at: '2024-06-12T03:26:25.769Z'
+                created_at: '2024-06-12T04:19:37.566Z'
+                updated_at: '2024-06-12T04:19:37.566Z'
               - id: 4
                 first_name: John
                 last_name: Doe
-                created_at: '2024-06-12T03:26:25.769Z'
-                updated_at: '2024-06-12T03:26:25.769Z'
+                created_at: '2024-06-12T04:19:37.567Z'
+                updated_at: '2024-06-12T04:19:37.567Z'
               - id: 5
                 first_name: John
                 last_name: Doe
-                created_at: '2024-06-12T03:26:25.770Z'
-                updated_at: '2024-06-12T03:26:25.770Z'
+                created_at: '2024-06-12T04:19:37.568Z'
+                updated_at: '2024-06-12T04:19:37.568Z'
               - id: 6
                 first_name: John
                 last_name: Doe
-                created_at: '2024-06-12T03:26:25.770Z'
-                updated_at: '2024-06-12T03:26:25.770Z'
+                created_at: '2024-06-12T04:19:37.568Z'
+                updated_at: '2024-06-12T04:19:37.568Z'
               - id: 7
                 first_name: John
                 last_name: Doe
-                created_at: '2024-06-12T03:26:25.771Z'
-                updated_at: '2024-06-12T03:26:25.771Z'
+                created_at: '2024-06-12T04:19:37.569Z'
+                updated_at: '2024-06-12T04:19:37.569Z'
               - id: 8
                 first_name: John
                 last_name: Doe
-                created_at: '2024-06-12T03:26:25.771Z'
-                updated_at: '2024-06-12T03:26:25.771Z'
+                created_at: '2024-06-12T04:19:37.569Z'
+                updated_at: '2024-06-12T04:19:37.569Z'
               - id: 9
                 first_name: John
                 last_name: Doe
-                created_at: '2024-06-12T03:26:25.771Z'
-                updated_at: '2024-06-12T03:26:25.771Z'
+                created_at: '2024-06-12T04:19:37.570Z'
+                updated_at: '2024-06-12T04:19:37.570Z'
               - id: 10
                 first_name: John
                 last_name: Doe
-                created_at: '2024-06-12T03:26:25.772Z'
-                updated_at: '2024-06-12T03:26:25.772Z'
+                created_at: '2024-06-12T04:19:37.570Z'
+                updated_at: '2024-06-12T04:19:37.570Z'
     post:
       summary: create
       tags:
@@ -665,8 +929,8 @@ paths:
                 id: 11
                 first_name: John
                 last_name: Doe
-                created_at: '2024-06-12T03:26:25.796Z'
-                updated_at: '2024-06-12T03:26:25.796Z'
+                created_at: '2024-06-12T04:19:37.595Z'
+                updated_at: '2024-06-12T04:19:37.595Z'
         '422':
           description: 'Invalid Request: returns status code 422'
           content:
@@ -737,8 +1001,8 @@ paths:
                 id: 1
                 first_name: John
                 last_name: Doe
-                created_at: '2024-06-12T03:26:25.776Z'
-                updated_at: '2024-06-12T03:26:25.776Z'
+                created_at: '2024-06-12T04:19:37.576Z'
+                updated_at: '2024-06-12T04:19:37.576Z'
         '404':
           description: returns status code 404 if record does not exist
           content:
@@ -803,5 +1067,5 @@ paths:
                 first_name: Jane
                 id: 1
                 last_name: Doe
-                created_at: '2024-06-12T03:26:25.805Z'
-                updated_at: '2024-06-12T03:26:25.811Z'
+                created_at: '2024-06-12T04:19:37.605Z'
+                updated_at: '2024-06-12T04:19:37.611Z'

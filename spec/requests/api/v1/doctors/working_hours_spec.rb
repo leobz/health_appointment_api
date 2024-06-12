@@ -38,7 +38,7 @@ RSpec.describe 'WorkingHours',  type: :request do
   end
 
   describe "Create" do
-    let(:valid_attributes) { { doctor_id: doctor.id, day_of_week: "saturday", start_time: "09:00", end_time: "10:00" } }
+    let(:valid_attributes) { { day_of_week: "saturday", start_time: "09:00", end_time: "10:00" } }
 
     it 'Valid Request: creates a working_hour' do
       post api_v1_doctor_working_hours_path(doctor_id: doctor.id), params: valid_attributes

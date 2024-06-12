@@ -168,62 +168,62 @@ paths:
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:11:23.783Z'
-                updated_at: '2024-06-12T03:11:23.783Z'
+                created_at: '2024-06-12T03:26:25.703Z'
+                updated_at: '2024-06-12T03:26:25.703Z'
               - id: 2
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:11:23.784Z'
-                updated_at: '2024-06-12T03:11:23.784Z'
+                created_at: '2024-06-12T03:26:25.704Z'
+                updated_at: '2024-06-12T03:26:25.704Z'
               - id: 3
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:11:23.785Z'
-                updated_at: '2024-06-12T03:11:23.785Z'
+                created_at: '2024-06-12T03:26:25.705Z'
+                updated_at: '2024-06-12T03:26:25.705Z'
               - id: 4
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:11:23.786Z'
-                updated_at: '2024-06-12T03:11:23.786Z'
+                created_at: '2024-06-12T03:26:25.705Z'
+                updated_at: '2024-06-12T03:26:25.705Z'
               - id: 5
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:11:23.786Z'
-                updated_at: '2024-06-12T03:11:23.786Z'
+                created_at: '2024-06-12T03:26:25.706Z'
+                updated_at: '2024-06-12T03:26:25.706Z'
               - id: 6
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:11:23.787Z'
-                updated_at: '2024-06-12T03:11:23.787Z'
+                created_at: '2024-06-12T03:26:25.706Z'
+                updated_at: '2024-06-12T03:26:25.706Z'
               - id: 7
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:11:23.787Z'
-                updated_at: '2024-06-12T03:11:23.787Z'
+                created_at: '2024-06-12T03:26:25.706Z'
+                updated_at: '2024-06-12T03:26:25.706Z'
               - id: 8
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:11:23.788Z'
-                updated_at: '2024-06-12T03:11:23.788Z'
+                created_at: '2024-06-12T03:26:25.707Z'
+                updated_at: '2024-06-12T03:26:25.707Z'
               - id: 9
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:11:23.788Z'
-                updated_at: '2024-06-12T03:11:23.788Z'
+                created_at: '2024-06-12T03:26:25.707Z'
+                updated_at: '2024-06-12T03:26:25.707Z'
               - id: 10
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:11:23.789Z'
-                updated_at: '2024-06-12T03:11:23.789Z'
+                created_at: '2024-06-12T03:26:25.708Z'
+                updated_at: '2024-06-12T03:26:25.708Z'
     post:
       summary: create
       tags:
@@ -280,8 +280,8 @@ paths:
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 15
-                created_at: '2024-06-12T03:11:23.814Z'
-                updated_at: '2024-06-12T03:11:23.814Z'
+                created_at: '2024-06-12T03:26:25.741Z'
+                updated_at: '2024-06-12T03:26:25.741Z'
         '422':
           description: 'Invalid Request: returns status code 422'
           content:
@@ -463,8 +463,8 @@ paths:
                 first_name: John
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:11:23.795Z'
-                updated_at: '2024-06-12T03:11:23.795Z'
+                created_at: '2024-06-12T03:26:25.712Z'
+                updated_at: '2024-06-12T03:26:25.712Z'
         '404':
           description: returns status code 404 if record does not exist
           content:
@@ -533,5 +533,275 @@ paths:
                 id: 1
                 last_name: Doe
                 time_slot_per_client_in_min: 60
-                created_at: '2024-06-12T03:11:23.826Z'
-                updated_at: '2024-06-12T03:11:23.833Z'
+                created_at: '2024-06-12T03:26:25.750Z'
+                updated_at: '2024-06-12T03:26:25.756Z'
+  "/api/v1/patients":
+    get:
+      summary: index
+      tags:
+      - Patients
+      responses:
+        '200':
+          description: returns a list of patients
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    first_name:
+                      type: string
+                    last_name:
+                      type: string
+                    created_at:
+                      type: string
+                    updated_at:
+                      type: string
+                  required:
+                  - id
+                  - first_name
+                  - last_name
+                  - created_at
+                  - updated_at
+              example:
+              - id: 1
+                first_name: John
+                last_name: Doe
+                created_at: '2024-06-12T03:26:25.767Z'
+                updated_at: '2024-06-12T03:26:25.767Z'
+              - id: 2
+                first_name: John
+                last_name: Doe
+                created_at: '2024-06-12T03:26:25.768Z'
+                updated_at: '2024-06-12T03:26:25.768Z'
+              - id: 3
+                first_name: John
+                last_name: Doe
+                created_at: '2024-06-12T03:26:25.769Z'
+                updated_at: '2024-06-12T03:26:25.769Z'
+              - id: 4
+                first_name: John
+                last_name: Doe
+                created_at: '2024-06-12T03:26:25.769Z'
+                updated_at: '2024-06-12T03:26:25.769Z'
+              - id: 5
+                first_name: John
+                last_name: Doe
+                created_at: '2024-06-12T03:26:25.770Z'
+                updated_at: '2024-06-12T03:26:25.770Z'
+              - id: 6
+                first_name: John
+                last_name: Doe
+                created_at: '2024-06-12T03:26:25.770Z'
+                updated_at: '2024-06-12T03:26:25.770Z'
+              - id: 7
+                first_name: John
+                last_name: Doe
+                created_at: '2024-06-12T03:26:25.771Z'
+                updated_at: '2024-06-12T03:26:25.771Z'
+              - id: 8
+                first_name: John
+                last_name: Doe
+                created_at: '2024-06-12T03:26:25.771Z'
+                updated_at: '2024-06-12T03:26:25.771Z'
+              - id: 9
+                first_name: John
+                last_name: Doe
+                created_at: '2024-06-12T03:26:25.771Z'
+                updated_at: '2024-06-12T03:26:25.771Z'
+              - id: 10
+                first_name: John
+                last_name: Doe
+                created_at: '2024-06-12T03:26:25.772Z'
+                updated_at: '2024-06-12T03:26:25.772Z'
+    post:
+      summary: create
+      tags:
+      - Patients
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+              required:
+              - first_name
+              - last_name
+            example:
+              first_name: John
+              last_name: Doe
+      responses:
+        '201':
+          description: 'Valid Request: creates a patient'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  first_name:
+                    type: string
+                  last_name:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                required:
+                - id
+                - first_name
+                - last_name
+                - created_at
+                - updated_at
+              example:
+                id: 11
+                first_name: John
+                last_name: Doe
+                created_at: '2024-06-12T03:26:25.796Z'
+                updated_at: '2024-06-12T03:26:25.796Z'
+        '422':
+          description: 'Invalid Request: returns status code 422'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  last_name:
+                    type: array
+                    items:
+                      type: string
+                required:
+                - last_name
+              example:
+                last_name:
+                - can't be blank
+  "/api/v1/patients/{id}":
+    delete:
+      summary: destroy
+      tags:
+      - Patients
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+      responses:
+        '204':
+          description: returns status code 204
+    get:
+      summary: show
+      tags:
+      - Patients
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: returns the patient if record exists
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  first_name:
+                    type: string
+                  last_name:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                required:
+                - id
+                - first_name
+                - last_name
+                - created_at
+                - updated_at
+              example:
+                id: 1
+                first_name: John
+                last_name: Doe
+                created_at: '2024-06-12T03:26:25.776Z'
+                updated_at: '2024-06-12T03:26:25.776Z'
+        '404':
+          description: returns status code 404 if record does not exist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+              example:
+                error: Couldn't find Patient
+    put:
+      summary: update
+      tags:
+      - Patients
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+              required:
+              - first_name
+            example:
+              first_name: Jane
+      responses:
+        '200':
+          description: updates the record
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  first_name:
+                    type: string
+                  id:
+                    type: integer
+                  last_name:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                required:
+                - first_name
+                - id
+                - last_name
+                - created_at
+                - updated_at
+              example:
+                first_name: Jane
+                id: 1
+                last_name: Doe
+                created_at: '2024-06-12T03:26:25.805Z'
+                updated_at: '2024-06-12T03:26:25.811Z'

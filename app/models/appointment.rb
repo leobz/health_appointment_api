@@ -2,12 +2,11 @@ class Appointment < ApplicationRecord
   belongs_to :doctor
   belongs_to :patient
 
-  validates :start_time, :end_time, presence: true
+  validates :start_time, presence: true
   validate  :validate_start_time_within_doctor_working_hours
 
-  after_initialize do |appointment|
-    # TODO: Extract this logic to an AppointmentService or AppointmentBuilder
-    appointment.end_time = start_time + doctor.time_slot_per_client_in_min.minutes if start_time
+  def end_time
+    self.start_time + self.doctor.time_slot_per_client_in_min.minutes
   end
 
   private

@@ -9,10 +9,14 @@ Rails.application.routes.draw do
       resources :doctors do
         resources :working_hours, module: :doctors
         resources :availabilities, only: [:index], module: :doctors
+        resources :appointments, only: [:index], module: :doctors
+      end
+
+      resources :patients do
+        resources :appointments, only: [:index], module: :patients
       end
 
       resources :appointments, only: [:create, :update, :destroy]
-      resources :patients
     end
   end
 end

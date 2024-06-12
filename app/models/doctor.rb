@@ -2,7 +2,10 @@ class Doctor < ApplicationRecord
   has_many :working_hours, dependent: :delete_all
   has_many :appointments
 
+  # TODO: Validate also end_time
+  # TODO: Validate max amount of time_slot_per_client_in_in
   validates :first_name, :last_name, :time_slot_per_client_in_min, presence: true
+
 
   # Output Example: [Availability<>, Availability<>, ...]
   def get_availabilities(start_date, end_date)

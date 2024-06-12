@@ -10,7 +10,7 @@ paths:
     post:
       summary: create
       tags:
-      - Appointment
+      - Appointments
       requestBody:
         content:
           application/json:
@@ -61,7 +61,7 @@ paths:
     delete:
       summary: destroy
       tags:
-      - Appointment
+      - Appointments
       parameters:
       - name: id
         in: path
@@ -75,7 +75,7 @@ paths:
     put:
       summary: update
       tags:
-      - Appointment
+      - Appointments
       parameters:
       - name: id
         in: path
@@ -129,11 +129,253 @@ paths:
                 doctor_id: 1
                 patient_id: 1
                 start_time: '2024-01-08T16:00:00Z'
+  "/api/v1/doctors":
+    get:
+      summary: index
+      tags:
+      - Doctors
+      responses:
+        '200':
+          description: returns a list of doctors
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    first_name:
+                      type: string
+                    last_name:
+                      type: string
+                    time_slot_per_client_in_min:
+                      type: integer
+                    created_at:
+                      type: string
+                    updated_at:
+                      type: string
+                  required:
+                  - id
+                  - first_name
+                  - last_name
+                  - time_slot_per_client_in_min
+                  - created_at
+                  - updated_at
+              example:
+              - id: 1
+                first_name: John
+                last_name: Doe
+                time_slot_per_client_in_min: 60
+                created_at: '2024-06-12T05:25:31.928Z'
+                updated_at: '2024-06-12T05:25:31.928Z'
+              - id: 2
+                first_name: John
+                last_name: Doe
+                time_slot_per_client_in_min: 60
+                created_at: '2024-06-12T05:25:31.929Z'
+                updated_at: '2024-06-12T05:25:31.929Z'
+              - id: 3
+                first_name: John
+                last_name: Doe
+                time_slot_per_client_in_min: 60
+                created_at: '2024-06-12T05:25:31.929Z'
+                updated_at: '2024-06-12T05:25:31.929Z'
+              - id: 4
+                first_name: John
+                last_name: Doe
+                time_slot_per_client_in_min: 60
+                created_at: '2024-06-12T05:25:31.930Z'
+                updated_at: '2024-06-12T05:25:31.930Z'
+              - id: 5
+                first_name: John
+                last_name: Doe
+                time_slot_per_client_in_min: 60
+                created_at: '2024-06-12T05:25:31.930Z'
+                updated_at: '2024-06-12T05:25:31.930Z'
+              - id: 6
+                first_name: John
+                last_name: Doe
+                time_slot_per_client_in_min: 60
+                created_at: '2024-06-12T05:25:31.930Z'
+                updated_at: '2024-06-12T05:25:31.930Z'
+              - id: 7
+                first_name: John
+                last_name: Doe
+                time_slot_per_client_in_min: 60
+                created_at: '2024-06-12T05:25:31.931Z'
+                updated_at: '2024-06-12T05:25:31.931Z'
+              - id: 8
+                first_name: John
+                last_name: Doe
+                time_slot_per_client_in_min: 60
+                created_at: '2024-06-12T05:25:31.931Z'
+                updated_at: '2024-06-12T05:25:31.931Z'
+              - id: 9
+                first_name: John
+                last_name: Doe
+                time_slot_per_client_in_min: 60
+                created_at: '2024-06-12T05:25:31.932Z'
+                updated_at: '2024-06-12T05:25:31.932Z'
+              - id: 10
+                first_name: John
+                last_name: Doe
+                time_slot_per_client_in_min: 60
+                created_at: '2024-06-12T05:25:31.932Z'
+                updated_at: '2024-06-12T05:25:31.932Z'
+    post:
+      summary: create
+      tags:
+      - Doctors
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                time_slot_per_client_in_min:
+                  type: string
+              required:
+              - first_name
+              - last_name
+              - time_slot_per_client_in_min
+            example:
+              first_name: John
+              last_name: Doe
+              time_slot_per_client_in_min: '15'
+      responses:
+        '201':
+          description: 'Valid Request: creates a doctor'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  first_name:
+                    type: string
+                  last_name:
+                    type: string
+                  time_slot_per_client_in_min:
+                    type: integer
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                required:
+                - id
+                - first_name
+                - last_name
+                - time_slot_per_client_in_min
+                - created_at
+                - updated_at
+              example:
+                id: 11
+                first_name: John
+                last_name: Doe
+                time_slot_per_client_in_min: 15
+                created_at: '2024-06-12T05:25:31.958Z'
+                updated_at: '2024-06-12T05:25:31.958Z'
+        '422':
+          description: 'Invalid Request: returns status code 422'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  last_name:
+                    type: array
+                    items:
+                      type: string
+                  time_slot_per_client_in_min:
+                    type: array
+                    items:
+                      type: string
+                required:
+                - last_name
+                - time_slot_per_client_in_min
+              example:
+                last_name:
+                - can't be blank
+                time_slot_per_client_in_min:
+                - can't be blank
+  "/api/v1/doctors/{doctor_id}/appointments":
+    get:
+      summary: index
+      tags:
+      - Doctor Appointments
+      parameters:
+      - name: doctor_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+      responses:
+        '200':
+          description: returns appointments of the doctor
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    start_time:
+                      type: string
+                    created_at:
+                      type: string
+                    updated_at:
+                      type: string
+                    doctor_id:
+                      type: integer
+                    patient_id:
+                      type: integer
+                    end_time:
+                      type: string
+                  required:
+                  - id
+                  - start_time
+                  - created_at
+                  - updated_at
+                  - doctor_id
+                  - patient_id
+                  - end_time
+              example:
+              - id: 1
+                start_time: '2024-01-01T10:00:00.000Z'
+                created_at: '2024-06-12T05:25:31.852Z'
+                updated_at: '2024-06-12T05:25:31.852Z'
+                doctor_id: 1
+                patient_id: 1
+                end_time: '2024-01-01T11:00:00.000Z'
+              - id: 2
+                start_time: '2024-01-01T10:00:00.000Z'
+                created_at: '2024-06-12T05:25:31.853Z'
+                updated_at: '2024-06-12T05:25:31.853Z'
+                doctor_id: 1
+                patient_id: 2
+                end_time: '2024-01-01T11:00:00.000Z'
+              - id: 3
+                start_time: '2024-01-01T10:00:00.000Z'
+                created_at: '2024-06-12T05:25:31.855Z'
+                updated_at: '2024-06-12T05:25:31.855Z'
+                doctor_id: 1
+                patient_id: 3
+                end_time: '2024-01-01T11:00:00.000Z'
   "/api/v1/doctors/{doctor_id}/availabilities":
     get:
       summary: index
       tags:
-      - Availability
+      - Doctor Availabilities
       parameters:
       - name: doctor_id
         in: path
@@ -193,7 +435,7 @@ paths:
     get:
       summary: index
       tags:
-      - WorkingHour
+      - Doctor WorkingHours
       parameters:
       - name: doctor_id
         in: path
@@ -219,13 +461,742 @@ paths:
                       type: string
                     day_of_week:
                       type: string
+                    id:
+                      type: integer
                   required:
                   - end_time
                   - start_time
               example:
-              - day_of_week: monday
+              - id: 1
+                day_of_week: monday
                 end_time: '17:00'
                 start_time: '09:00'
-              - day_of_week: friday
+              - id: 2
+                day_of_week: friday
                 end_time: '17:00'
                 start_time: '09:00'
+    post:
+      summary: create
+      tags:
+      - Doctor WorkingHours
+      parameters:
+      - name: doctor_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                doctor_id:
+                  type: string
+                day_of_week:
+                  type: string
+                start_time:
+                  type: string
+                end_time:
+                  type: string
+              required:
+              - day_of_week
+              - start_time
+              - end_time
+            example:
+              doctor_id: '1'
+              day_of_week: saturday
+              start_time: '09:00'
+              end_time: '10:00'
+      responses:
+        '201':
+          description: 'Valid Request: creates a working_hour'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  day_of_week:
+                    type: string
+                  start_time:
+                    type: string
+                  end_time:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                  doctor_id:
+                    type: integer
+                required:
+                - id
+                - day_of_week
+                - start_time
+                - end_time
+                - created_at
+                - updated_at
+                - doctor_id
+              example:
+                id: 3
+                day_of_week: saturday
+                start_time: '2000-01-01T09:00:00.000Z'
+                end_time: '2000-01-01T10:00:00.000Z'
+                created_at: '2024-06-12T05:25:31.905Z'
+                updated_at: '2024-06-12T05:25:31.905Z'
+                doctor_id: 1
+        '422':
+          description: 'Invalid Request: returns status code 422'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  day_of_week:
+                    type: array
+                    items:
+                      type: string
+                  start_time:
+                    type: array
+                    items:
+                      type: string
+                  end_time:
+                    type: array
+                    items:
+                      type: string
+                required:
+                - day_of_week
+                - start_time
+                - end_time
+              example:
+                day_of_week:
+                - can't be blank
+                start_time:
+                - can't be blank
+                - must be before end_time
+                end_time:
+                - can't be blank
+  "/api/v1/doctors/{doctor_id}/working_hours/{id}":
+    delete:
+      summary: destroy
+      tags:
+      - Doctor WorkingHours
+      parameters:
+      - name: doctor_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+      responses:
+        '204':
+          description: returns status code 204
+    get:
+      summary: show
+      tags:
+      - Doctor WorkingHours
+      parameters:
+      - name: doctor_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: returns the working_hour if record exists
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  day_of_week:
+                    type: string
+                  start_time:
+                    type: string
+                  end_time:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                  doctor_id:
+                    type: integer
+                required:
+                - id
+                - day_of_week
+                - start_time
+                - end_time
+                - created_at
+                - updated_at
+                - doctor_id
+              example:
+                id: 1
+                day_of_week: monday
+                start_time: '2000-01-01T09:00:00.000Z'
+                end_time: '2000-01-01T17:00:00.000Z'
+                created_at: '2024-06-12T05:25:31.888Z'
+                updated_at: '2024-06-12T05:25:31.888Z'
+                doctor_id: 1
+        '404':
+          description: returns status code 404 if record does not exist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+              example:
+                error: Couldn't find WorkingHour
+    put:
+      summary: update
+      tags:
+      - Doctor WorkingHours
+      parameters:
+      - name: doctor_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                start_time:
+                  type: string
+              required:
+              - start_time
+            example:
+              start_time: '05:00'
+      responses:
+        '200':
+          description: updates the record
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  start_time:
+                    type: string
+                  doctor_id:
+                    type: integer
+                  id:
+                    type: integer
+                  day_of_week:
+                    type: string
+                  end_time:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                required:
+                - start_time
+                - doctor_id
+                - id
+                - day_of_week
+                - end_time
+                - created_at
+                - updated_at
+              example:
+                start_time: '2000-01-01T05:00:00.000Z'
+                doctor_id: 1
+                id: 1
+                day_of_week: monday
+                end_time: '2000-01-01T17:00:00.000Z'
+                created_at: '2024-06-12T05:25:31.915Z'
+                updated_at: '2024-06-12T05:25:31.919Z'
+  "/api/v1/doctors/{id}":
+    delete:
+      summary: destroy
+      tags:
+      - Doctors
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+      responses:
+        '204':
+          description: returns status code 204
+    get:
+      summary: show
+      tags:
+      - Doctors
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: returns the doctor if record exists
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  first_name:
+                    type: string
+                  last_name:
+                    type: string
+                  time_slot_per_client_in_min:
+                    type: integer
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                required:
+                - id
+                - first_name
+                - last_name
+                - time_slot_per_client_in_min
+                - created_at
+                - updated_at
+              example:
+                id: 1
+                first_name: John
+                last_name: Doe
+                time_slot_per_client_in_min: 60
+                created_at: '2024-06-12T05:25:31.936Z'
+                updated_at: '2024-06-12T05:25:31.936Z'
+        '404':
+          description: returns status code 404 if record does not exist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+              example:
+                error: Couldn't find Doctor
+    put:
+      summary: update
+      tags:
+      - Doctors
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+              required:
+              - first_name
+            example:
+              first_name: Jane
+      responses:
+        '200':
+          description: updates the record
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  first_name:
+                    type: string
+                  id:
+                    type: integer
+                  last_name:
+                    type: string
+                  time_slot_per_client_in_min:
+                    type: integer
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                required:
+                - first_name
+                - id
+                - last_name
+                - time_slot_per_client_in_min
+                - created_at
+                - updated_at
+              example:
+                first_name: Jane
+                id: 1
+                last_name: Doe
+                time_slot_per_client_in_min: 60
+                created_at: '2024-06-12T05:25:31.968Z'
+                updated_at: '2024-06-12T05:25:31.974Z'
+  "/api/v1/patients":
+    get:
+      summary: index
+      tags:
+      - Patients
+      responses:
+        '200':
+          description: returns a list of patients
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    first_name:
+                      type: string
+                    last_name:
+                      type: string
+                    created_at:
+                      type: string
+                    updated_at:
+                      type: string
+                  required:
+                  - id
+                  - first_name
+                  - last_name
+                  - created_at
+                  - updated_at
+              example:
+              - id: 1
+                first_name: John
+                last_name: Doe
+                created_at: '2024-06-12T05:25:32.046Z'
+                updated_at: '2024-06-12T05:25:32.046Z'
+              - id: 2
+                first_name: John
+                last_name: Doe
+                created_at: '2024-06-12T05:25:32.047Z'
+                updated_at: '2024-06-12T05:25:32.047Z'
+              - id: 3
+                first_name: John
+                last_name: Doe
+                created_at: '2024-06-12T05:25:32.047Z'
+                updated_at: '2024-06-12T05:25:32.047Z'
+              - id: 4
+                first_name: John
+                last_name: Doe
+                created_at: '2024-06-12T05:25:32.048Z'
+                updated_at: '2024-06-12T05:25:32.048Z'
+              - id: 5
+                first_name: John
+                last_name: Doe
+                created_at: '2024-06-12T05:25:32.048Z'
+                updated_at: '2024-06-12T05:25:32.048Z'
+              - id: 6
+                first_name: John
+                last_name: Doe
+                created_at: '2024-06-12T05:25:32.049Z'
+                updated_at: '2024-06-12T05:25:32.049Z'
+              - id: 7
+                first_name: John
+                last_name: Doe
+                created_at: '2024-06-12T05:25:32.049Z'
+                updated_at: '2024-06-12T05:25:32.049Z'
+              - id: 8
+                first_name: John
+                last_name: Doe
+                created_at: '2024-06-12T05:25:32.050Z'
+                updated_at: '2024-06-12T05:25:32.050Z'
+              - id: 9
+                first_name: John
+                last_name: Doe
+                created_at: '2024-06-12T05:25:32.050Z'
+                updated_at: '2024-06-12T05:25:32.050Z'
+              - id: 10
+                first_name: John
+                last_name: Doe
+                created_at: '2024-06-12T05:25:32.051Z'
+                updated_at: '2024-06-12T05:25:32.051Z'
+    post:
+      summary: create
+      tags:
+      - Patients
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+              required:
+              - first_name
+              - last_name
+            example:
+              first_name: John
+              last_name: Doe
+      responses:
+        '201':
+          description: 'Valid Request: creates a patient'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  first_name:
+                    type: string
+                  last_name:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                required:
+                - id
+                - first_name
+                - last_name
+                - created_at
+                - updated_at
+              example:
+                id: 11
+                first_name: John
+                last_name: Doe
+                created_at: '2024-06-12T05:25:32.078Z'
+                updated_at: '2024-06-12T05:25:32.078Z'
+        '422':
+          description: 'Invalid Request: returns status code 422'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  last_name:
+                    type: array
+                    items:
+                      type: string
+                required:
+                - last_name
+              example:
+                last_name:
+                - can't be blank
+  "/api/v1/patients/{id}":
+    delete:
+      summary: destroy
+      tags:
+      - Patients
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+      responses:
+        '204':
+          description: returns status code 204
+    get:
+      summary: show
+      tags:
+      - Patients
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 100
+      responses:
+        '200':
+          description: returns the patient if record exists
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  first_name:
+                    type: string
+                  last_name:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                required:
+                - id
+                - first_name
+                - last_name
+                - created_at
+                - updated_at
+              example:
+                id: 1
+                first_name: John
+                last_name: Doe
+                created_at: '2024-06-12T05:25:32.055Z'
+                updated_at: '2024-06-12T05:25:32.055Z'
+        '404':
+          description: returns status code 404 if record does not exist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+              example:
+                error: Couldn't find Patient
+    put:
+      summary: update
+      tags:
+      - Patients
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+              required:
+              - first_name
+            example:
+              first_name: Jane
+      responses:
+        '200':
+          description: updates the record
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  first_name:
+                    type: string
+                  id:
+                    type: integer
+                  last_name:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                required:
+                - first_name
+                - id
+                - last_name
+                - created_at
+                - updated_at
+              example:
+                first_name: Jane
+                id: 1
+                last_name: Doe
+                created_at: '2024-06-12T05:25:32.086Z'
+                updated_at: '2024-06-12T05:25:32.092Z'
+  "/api/v1/patients/{patient_id}/appointments":
+    get:
+      summary: index
+      tags:
+      - Patient Appointments
+      parameters:
+      - name: patient_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+      responses:
+        '200':
+          description: returns appointments of the doctor
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    start_time:
+                      type: string
+                    created_at:
+                      type: string
+                    updated_at:
+                      type: string
+                    doctor_id:
+                      type: integer
+                    patient_id:
+                      type: integer
+                    end_time:
+                      type: string
+                  required:
+                  - id
+                  - start_time
+                  - created_at
+                  - updated_at
+                  - doctor_id
+                  - patient_id
+                  - end_time
+              example:
+              - id: 1
+                start_time: '2024-01-01T10:00:00.000Z'
+                created_at: '2024-06-12T05:25:32.038Z'
+                updated_at: '2024-06-12T05:25:32.038Z'
+                doctor_id: 1
+                patient_id: 1
+                end_time: '2024-01-01T11:00:00.000Z'
+              - id: 2
+                start_time: '2024-01-01T10:00:00.000Z'
+                created_at: '2024-06-12T05:25:32.039Z'
+                updated_at: '2024-06-12T05:25:32.039Z'
+                doctor_id: 1
+                patient_id: 1
+                end_time: '2024-01-01T11:00:00.000Z'
+              - id: 3
+                start_time: '2024-01-01T10:00:00.000Z'
+                created_at: '2024-06-12T05:25:32.040Z'
+                updated_at: '2024-06-12T05:25:32.040Z'
+                doctor_id: 1
+                patient_id: 1
+                end_time: '2024-01-01T11:00:00.000Z'

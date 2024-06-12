@@ -63,7 +63,7 @@ RSpec.describe "Doctors", type: :request do
       end
   end
 
-  describe "DELETE" do
+  describe "Delete" do
     it 'returns status code 204' do
       delete api_v1_doctor_path(doctor_id)
 
